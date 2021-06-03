@@ -3,7 +3,7 @@ import React from 'react'
 import styled from "@emotion/styled";
 
 const Card = styled.div`
-        background: #F4F4F4;
+        background: white;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 10px;
         width: 271px;
@@ -14,7 +14,7 @@ const Card = styled.div`
         align-items: center;
         padding: 22px 19px;
         font-family:Roboto;
-        margin: 10px;
+        margin: 12px;
 `
 
 export const CardsInfo = ({ category }) => {
