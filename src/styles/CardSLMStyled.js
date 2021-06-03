@@ -34,12 +34,10 @@ export const CardNavLinksContainer = styled.div`
 export const CardBurgerButton = styled.button`
         border: none;
         display: none;
+        background-color: white;
         @media (max-width:497px){
                 display: block;
-                fill: red;
-                button::active{
-                  background-color: red;
-                }
+                background-color: white;
                 
         }
 
