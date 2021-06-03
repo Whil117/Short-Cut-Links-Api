@@ -1,17 +1,17 @@
 export const Card = [{
-    id: 1,
+    id: 'one',
     icon: '/images/bitcoin.jpg',
     title: 'Brand Recognition ',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in libero montes, neque sed amet elit quis diam. Purus ultrices tristique nulla nec placerat amet laoreet sapien. Pharetra euismod arcu feugiat ut condimentum nunc. Tristique consectetur facilisi risus tempus, tristique etiam.',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in libero montes, neque sed amet elit quis diam. Purus ultrices tristique nulla nec placerat amet laoreet sapien. ',
 }, {
-    id: 2,
+    id: 'two',
     icon: '/images/meter.jpg',
     title: 'Detailed Records ',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in libero montes, neque sed amet elit quis diam. Purus ultrices tristique nulla nec placerat amet laoreet sapien. Pharetra euismod arcu feugiat ut condimentum nunc. Tristique consectetur facilisi risus tempus, tristique etiam.',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in libero montes, neque sed amet elit quis diam. ',
 }, {
-    id: 3,
+    id: 'three',
     icon: '/images/tools.jpg',
     title: 'Fully Customizable ',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in libero montes, neque sed amet elit quis diam. Purus ultrices tristique nulla nec placerat amet laoreet sapien. Pharetra euismod arcu feugiat ut condimentum nunc. Tristique consectetur facilisi risus tempus, tristique etiam.',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in libero montes, neque sed amet elit quis diam. Purus ultrices tristique nulla nec placerat amet laoreet sapien. Pharetra euismod arcu feugiat ut condimentum nunc. ',
 }]
 

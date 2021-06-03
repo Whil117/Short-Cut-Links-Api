@@ -9,85 +9,72 @@ import { CardsInfo } from '../components/CardsInfo';
 import { CardDiv } from '../styles/CardInfoStyled';
 import { CardFoot } from '../styles/CardFooter';
 import { UrlCopied } from '../styles/CardMainStyled';
-
-
+import { CardNavLiks, CardNavLinkPhone, CardNavLinksContainer } from '../styles/CardSLMStyled';
 
 const index = () => {
 
     const [inputLink, setInputLink] = useState('');
     const [displayLink, setDisplayLink] = useState(null);
-    const [closeCopied, setcloseCopied] = useState(false);
-    const [putLink, setPutLink] = useState({
-        original_link: '',
-        shortLi: ''
-    })
-    const [localLink, setLocalLink] = useState({
-        original_link: '',
-        shortLi: ''
-    });
+    const [button, setButton] = useState(0);
+    const [links, setLinks] = useState({})
 
     useEffect(() => {
-        if (localStorage.getItem('link')) {
-            const oldLink = JSON.parse(localStorage.getItem('link'))
-            setLocalLink(oldLink)
-            setDisplayLink(1)
-        }
+        const linkLocal = JSON.parse(localStorage.getItem('link'))
+        console.log('linkLocal se esta disparando')
+        const isValidOldLink = linkLocal ? (setLinks(linkLocal), setDisplayLink(true)) : null
+        return isValidOldLink
     }, []);
 
-    const myShortFetch = async (link) => {
+    const useFetch = async (link) => {
         await fetch(`https://api.shrtco.de/v2/shorten?url=${link}`, {
             method: 'POST',
             mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
             body: JSON.stringify(link),
         })
             .then((response) => response.json())
             .then((data) => {
-                const { result } = data
-                const { short_link, original_link } = result
+                const { original_link, short_link } = data.result
 
-                const isValidResult = result ? (
-                    setDisplayLink(true),
-                    setPutLink({
-                        original_link: original_link,
-                        shortLi: short_link,
-                    }),
-                    localStorage.setItem('link', JSON.stringify({
-                        original_link: original_link,
-                        shortLi: short_link,
-                    }))
-                ) : null
-                return isValidResult
-            });
+                setLinks({
+                    original_link: original_link,
+                    short_link: short_link,
+                })
+                setDisplayLink(true)
+                localStorage.setItem('link', JSON.stringify({
+                    original_link: original_link,
+                    short_link: short_link,
+                }))
+            })
+            .catch(setButton(3))
     }
 
     const change = (event) => {
         setInputLink(event.target.value)
     }
 
-    const submit = (event) => {
-        event.preventDefault()
-        const isValidLink = inputLink.trim().length > 4 ? (
-            myShortFetch(inputLink), setDisplayLink(3)
-        ) : (
-            setDisplayLink(4)
+    const submitLink = () => {
+        const prefix = 'https://'
+        const isValidLink = inputLink.substr(0, prefix.length) !== prefix ? setDisplayLink(4) : (
+            useFetch(inputLink),
+            setDisplayLink(3),
+            setButton(2),
+            setTimeout(() => {
+                setButton(0)
+            }, 3000)
         )
         return isValidLink
     }
-    const copyText = () => {
-        const textCopy = document.getElementById('ancla1')
-        textCopy.select()
-        textCopy.setSelectionRange(0, 999)
+    const copyLink = () => {
+        const link = document.getElementById('link')
+        link.select()
+        link.setSelectionRange(0, 999)
         document.execCommand("copy")
-        setcloseCopied(true)
+        setButton(1)
         setTimeout(() => {
-            setcloseCopied(false)
-        }, 5000);
+            setButton(0)
+        }, 3000);
     }
-    const deleteText = () => {
+    const deleteUrl = () => {
         const url = document.getElementById('url')
         url.select()
         url.setSelectionRange(0, 9999)
@@ -95,22 +82,35 @@ const index = () => {
     }
     return (
         <div>
-            {closeCopied  &&
+            {button === 1 &&
                 <UrlCopied>
                     <p><b>Url Copied</b></p>
-                    {/* <button></button></button> */}
                 </UrlCopied>
             }
-            <CardShortLinkMenu />
+            {button === 2 &&
+                <UrlCopied send="true">
+                    <p><b>Petición Enviada</b></p>
+                </UrlCopied>
+            }
+            {button === 3 &&
+                <UrlCopied error="false">
+                    <p><b>Error Petición</b></p>
+                </UrlCopied>
+            }
+            <CardShortLinkMenu button={button} setButton={setButton} />
+            {button === 4 &&
+                <CardNavLinkPhone>
+                    <CardNavLiks href="#one"><b>Features</b></CardNavLiks>
+                    <CardNavLiks href="#two"><b>Pricing</b></CardNavLiks>
+                    <CardNavLiks href="#three"><b>Resources</b></CardNavLiks>
+                </CardNavLinkPhone>
+            }
             <CardLinkLogo />
             <CardLinkMain>
-                <ShortDiv
-                    hasLinks={displayLink} submit={submit} change={change}
-                    deleteText={deleteText} hasLinks={displayLink} />
+                <ShortDiv hasLinks={displayLink} submit={submitLink} change={change} deleteText={deleteUrl} hasLinks={displayLink} />
                 {displayLink === 4 && <CardMessage alertMessage="true"><b>Hey, Enter a url</b></CardMessage>}
                 {displayLink === 3 && <CardMessage><b>Shortening url...</b></CardMessage>}
-                {displayLink  === true && <CardLinks originalink={putLink.original_link} shortLink={putLink.shortLi} copyText={copyText} />}
-                {displayLink && <CardLinks originalink={localLink.original_link} shortLink={localLink.shortLi} copyText={copyText} />}
+                {displayLink === true && <CardLinks originalink={links.original_link} shortLink={links.short_link} copyText={copyLink} />}
             </CardLinkMain>
             <CardDiv>
                 {Card.map((item) => <CardsInfo key={item.id.toString()} category={item} />)}

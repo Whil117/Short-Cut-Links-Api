@@ -44,6 +44,8 @@ line-height: 23px;
 color: #757575;
 
 `
-export const ImageLogo = styled(Image)`
+export const Photo = styled.img`
        border-radius: 10px;
+       width: 417px;
+       height: 300px;
 `

@@ -10,20 +10,20 @@ const Card = styled.div`
         height: 289px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         padding: 22px 19px;
         font-family:Roboto;
         margin: 10px;
 `
 
-export const CardsInfo = ({category}) => {
+export const CardsInfo = ({ category }) => {
 
-    const  {icon,title,text } = category
+    const {id, icon, title, text } = category
     return (
         <Card>
             <img src={icon} alt={title}  />
-            <h2>{title}</h2>
+            <h2 id={id}>{title}</h2>
             <p>{text}</p>
         </Card>
     )
