@@ -1,17 +1,20 @@
 import React from 'react'
-import { Cardsli } from '../styles/CardLinksStyled'
-import { CardInput, CardShortButton } from '../styles/CardShortFormStyled'
+import { Cardsli, CardsLiChildOne } from '../styles/CardLinksStyled'
+import { CardInput, CardShortButton } from '../styles/CardShortDivStyled'
 
-export const CardLinks = ({ shortLink, copyText }) => {
+export const CardLinks = ({ originalink, shortLink, copyText }) => {
     return (
         <Cardsli>
-            <CardInput type="text" id="ancla1" defaultValue={shortLink} />
-            <CardShortButton primary onClick={copyText}>
-                <svg width="38" height="43" viewBox="0 0 38 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18.75 25V8H24.7925L30 12.6563V25H18.75Z" stroke="white" strokeWidth="15" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M28.75 32.5V36.5C28.75 37.5609 28.2891 38.5783 27.4686 39.3284C26.6481 40.0786 25.5353 40.5 24.375 40.5H6.875C5.71468 40.5 4.60188 40.0786 3.78141 39.3284C2.96094 38.5783 2.5 37.5609 2.5 36.5V14.5C2.5 13.4391 2.96094 12.4217 3.78141 11.6716C4.60188 10.9214 5.71468 10.5 6.875 10.5H11.25" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            </CardShortButton>
+            {/* <p id="ancla1"> {shortLink}</p> */}
+            <CardInput  five disabled type="text" defaultValue={originalink} />
+            <CardsLiChildOne>
+                <CardInput six ask color="true" four type="text" id="ancla1" defaultValue={shortLink} />
+                <CardShortButton primary onClick={copyText}>
+                    <svg width="22" height="27" viewBox="0 0 32 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.11111 7.39999V1.85C7.11111 1.35935 7.29841 0.888794 7.63181 0.541852C7.96521 0.19491 8.41739 0 8.88889 0H30.2222C30.6937 0 31.1459 0.19491 31.4793 0.541852C31.8127 0.888794 32 1.35935 32 1.85V27.75C32 28.2406 31.8127 28.7112 31.4793 29.0581C31.1459 29.4051 30.6937 29.6 30.2222 29.6H24.8889V35.15C24.8889 36.1712 24.0889 37 23.0987 37H1.79022C1.55578 37.0014 1.32337 36.9547 1.10635 36.8624C0.889329 36.7701 0.69197 36.6341 0.525615 36.4622C0.35926 36.2903 0.227187 36.0858 0.136985 35.8606C0.0467833 35.6355 0.000229999 35.3939 0 35.15L0.00533337 9.24999C0.00533337 8.22879 0.805334 7.39999 1.79556 7.39999H7.11111ZM3.56089 11.1L3.55556 33.3H21.3333V11.1H3.56089ZM10.6667 7.39999H24.8889V25.9H28.4444V3.7H10.6667V7.39999Z" fill="white" />
+                    </svg>
+                </CardShortButton>
+            </CardsLiChildOne>
         </Cardsli>
     )
 }

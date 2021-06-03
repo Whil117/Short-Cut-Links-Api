@@ -5,9 +5,12 @@ export const CardLink = styled.div`
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+        margin-top: 50px;
+        margin-bottom: 50px;
         div{
-            margin-left: 20px;
-            margin-right: 20px;
+            width: 417px;
+            margin-left: 10px;
+            margin-right: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -27,7 +30,7 @@ export const CardLinkTitle = styled.p`
     }
 `
 export const CardLinkText = styled.p`
-width: 445px;
+width: 417px;
 height: 46px;
 left: 93px;
 top: 362px;
@@ -42,6 +45,5 @@ color: #757575;
 
 `
 export const ImageLogo = styled(Image)`
-       position: none;
        border-radius: 10px;
 `
