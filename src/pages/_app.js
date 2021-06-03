@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-
+import Head from 'next/head'
 const Global = createGlobalStyle`
 
 /* cyrillic-ext */
@@ -473,16 +473,22 @@ template {
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 `
-
-// const Global = createGlobalStyle`
-//     body{
-//       margin: 0;
-//     }
-// `
 function MyApp({ Component, pageProps }) {
   return (
     <>
-    <Global/>
+      <Head>
+        <title>ShrtCut App</title>
+        <meta name="description" content="A single page aplication of short cut url" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="shortcut icon" href="/images/favicon.ico" />
+        <meta name="author" content="Whil" />
+        <meta name="theme-color" content="#2C5694" />
+        <meta property="og:title" content="ShortCutApi"/>
+        <meta property="og:image" content="/images/shrtcut.jpeg"/>
+        <meta property="og:description" content="A single page aplication about Short Cut Url"/>
+        <meta property="og:url" content="https://shortcutapi.herokuapp.com/" />
+      </Head>
+      <Global />
       <Component {...pageProps} />
     </>
   )

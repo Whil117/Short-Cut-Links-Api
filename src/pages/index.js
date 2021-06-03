@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+
 import { ShortDiv } from '../components/ShortForm';
 import { CardLinks } from '../components/CardLinks';
 import { CardShortLinkMenu } from '../components/CardShortLinkMenu';
@@ -9,7 +10,7 @@ import { CardsInfo } from '../components/CardsInfo';
 import { CardDiv } from '../styles/CardInfoStyled';
 import { CardFoot } from '../styles/CardFooter';
 import { UrlCopied } from '../styles/CardMainStyled';
-import { CardNavLiks, CardNavLinkPhone, CardNavLinksContainer } from '../styles/CardSLMStyled';
+import { CardNavLiks, CardNavLinkPhone } from '../styles/CardSLMStyled';
 
 const index = () => {
 
@@ -81,44 +82,48 @@ const index = () => {
         document.execCommand("Delete")
     }
     return (
-        <div>
-            {button === 1 &&
-                <UrlCopied>
-                    <p><b>Url Copied</b></p>
-                </UrlCopied>
-            }
-            {button === 2 &&
-                <UrlCopied send="true">
-                    <p><b>Petición Enviada</b></p>
-                </UrlCopied>
-            }
-            {button === 3 &&
-                <UrlCopied error="false">
-                    <p><b>Error Petición</b></p>
-                </UrlCopied>
-            }
-            <CardShortLinkMenu button={button} setButton={setButton} />
-            {button === 4 &&
-                <CardNavLinkPhone>
-                    <CardNavLiks href="#one"><b>Features</b></CardNavLiks>
-                    <CardNavLiks href="#two"><b>Pricing</b></CardNavLiks>
-                    <CardNavLiks href="#three"><b>Resources</b></CardNavLiks>
-                </CardNavLinkPhone>
-            }
-            <CardLinkLogo />
-            <CardLinkMain>
-                <ShortDiv hasLinks={displayLink} submit={submitLink} change={change} deleteText={deleteUrl} hasLinks={displayLink} />
-                {displayLink === 4 && <CardMessage alertMessage="true"><b>Hey, Enter a url</b></CardMessage>}
-                {displayLink === 3 && <CardMessage><b>Shortening url...</b></CardMessage>}
-                {displayLink === true && <CardLinks originalink={links.original_link} shortLink={links.short_link} copyText={copyLink} />}
-            </CardLinkMain>
-            <CardDiv>
-                {Card.map((item) => <CardsInfo key={item.id.toString()} category={item} />)}
-            </CardDiv>
-            <CardFoot>
-                <p>Whil Company 2021</p>
-            </CardFoot>
-        </div>
+        <>
+
+
+            <div>
+                {button === 1 &&
+                    <UrlCopied>
+                        <p><b>Url Copied</b></p>
+                    </UrlCopied>
+                }
+                {button === 2 &&
+                    <UrlCopied send="true">
+                        <p><b>Petición Enviada</b></p>
+                    </UrlCopied>
+                }
+                {button === 3 &&
+                    <UrlCopied error="false">
+                        <p><b>Error Petición</b></p>
+                    </UrlCopied>
+                }
+                <CardShortLinkMenu button={button} setButton={setButton} />
+                {button === 4 &&
+                    <CardNavLinkPhone>
+                        <CardNavLiks href="#one"><b>Features</b></CardNavLiks>
+                        <CardNavLiks href="#two"><b>Pricing</b></CardNavLiks>
+                        <CardNavLiks href="#three"><b>Resources</b></CardNavLiks>
+                    </CardNavLinkPhone>
+                }
+                <CardLinkLogo />
+                <CardLinkMain>
+                    <ShortDiv hasLinks={displayLink} submit={submitLink} change={change} deleteText={deleteUrl} hasLinks={displayLink} />
+                    {displayLink === 4 && <CardMessage alertMessage="true"><b>Hey, Enter a url</b></CardMessage>}
+                    {displayLink === 3 && <CardMessage><b>Shortening url...</b></CardMessage>}
+                    {displayLink === true && <CardLinks originalink={links.original_link} shortLink={links.short_link} copyText={copyLink} />}
+                </CardLinkMain>
+                <CardDiv>
+                    {Card.map((item) => <CardsInfo key={item.id.toString()} category={item} />)}
+                </CardDiv>
+                <CardFoot>
+                    <p>Whil Company 2021</p>
+                </CardFoot>
+            </div>
+        </>
     )
 }
 export default index
