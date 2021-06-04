@@ -11,6 +11,7 @@ import { CardDiv } from '../styles/CardInfoStyled';
 import { CardFoot } from '../styles/CardFooter';
 import { UrlCopied } from '../styles/CardMainStyled';
 import { CardNavLiks, CardNavLinkPhone } from '../styles/CardSLMStyled';
+import { Loading } from '../components/Loading';
 
 const index = () => {
 
@@ -113,7 +114,9 @@ const index = () => {
                 <CardLinkMain>
                     <ShortDiv hasLinks={displayLink} submit={submitLink} change={change} deleteText={deleteUrl} hasLinks={displayLink} />
                     {displayLink === 4 && <CardMessage alertMessage="true"><b>Hey, Enter a url</b></CardMessage>}
-                    {displayLink === 3 && <CardMessage><b>Shortening url...</b></CardMessage>}
+                    {displayLink === 3 && 
+                                <Loading />
+                    }
                     {displayLink === true && <CardLinks originalink={links.original_link} shortLink={links.short_link} copyText={copyLink} />}
                 </CardLinkMain>
                 <CardDiv>
